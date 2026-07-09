@@ -1,0 +1,322 @@
+// Prisma Schema for KrisiSar AI
+// Database: PostgreSQL (Supabase)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model
+model User {
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  phone         String    @unique
+  name          String
+  language      String    @default("en") // en, hi, mr, ta, te
+  role          UserRole  @default(FARMER)
+  
+  // Profile
+  farmSize      Float?    // in acres
+  location      Json?     // { lat, lng, address, district, state }
+  crops         String[]  // Array of crops grown
+  
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+  
+  // Relations
+  diagnoses     Diagnosis[]
+  riskScores    RiskScore[]
+  chatSessions  ChatSession[]
+  alerts        Alert[]
+  
+  @@index([phone])
+  @@index([email])
+}
+
+enum UserRole {
+  FARMER
+  AGRICULTURE_OFFICER
+  NGO
+  ADMIN
+}
+
+// Crop Diagnosis
+model Diagnosis {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Image details
+  imageUrl        String
+  imageStoragePath String
+  
+  // AI Analysis
+  disease         String?
+  confidence      Float?
+  severity        String?  // low, medium, high, critical
+  description     String?
+  symptoms        String[]
+  
+  // Recommendations
+  treatment       Json?    // { immediate: [], preventive: [], organic: [], chemical: [] }
+  
+  // Metadata
+  cropType        String?
+  location        Json?
+  weather         Json?    // Weather at diagnosis time
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([createdAt])
+}
+
+// Farm Risk Score
+model RiskScore {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Risk calculation
+  overallScore    Int      // 0-100
+  riskLevel       RiskLevel
+  
+  // Components
+  weatherRisk     Int      // 0-100
+  diseaseRisk     Int      // 0-100
+  cropHealthRisk  Int      // 0-100
+  marketRisk      Int?     // 0-100 (optional)
+  
+  // Contributing factors
+  factors         Json     // { weather: {}, disease: {}, crop: {} }
+  
+  // Recommendations
+  actions         Json     // { immediate: [], shortTerm: [], longTerm: [] }
+  
+  // Location
+  location        Json
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([userId])
+  @@index([createdAt])
+  @@index([riskLevel])
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+// Weather Data
+model WeatherData {
+  id              String   @id @default(cuid())
+  
+  // Location
+  location        Json     // { lat, lng, district, state }
+  
+  // Current weather
+  temperature     Float
+  humidity        Float
+  rainfall        Float
+  windSpeed       Float
+  pressure        Float?
+  cloudCover      Float?
+  
+  // Forecast
+  forecast        Json     // 7-day forecast
+  
+  // Disease risk indicators
+  diseaseRisk     Int      // 0-100
+  riskFactors     String[]
+  
+  // Source
+  source          String   @default("open-meteo")
+  
+  createdAt       DateTime @default(now())
+  expiresAt       DateTime // Cache expiration
+  
+  @@index([createdAt])
+}
+
+// Chat Sessions
+model ChatSession {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  title           String?
+  language        String   @default("en")
+  
+  messages        ChatMessage[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model ChatMessage {
+  id              String   @id @default(cuid())
+  sessionId       String
+  session         ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  role            MessageRole
+  content         String
+  metadata        Json?    // { intent, entities, confidence }
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([sessionId])
+  @@index([createdAt])
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+// Government Schemes
+model GovernmentScheme {
+  id              String   @id @default(cuid())
+  
+  name            String
+  nameHi          String?  // Hindi
+  nameMr          String?  // Marathi
+  nameTa          String?  // Tamil
+  nameTe          String?  // Telugu
+  
+  description     String
+  descriptionHi   String?
+  descriptionMr   String?
+  descriptionTa   String?
+  descriptionTe   String?
+  
+  // Details
+  eligibility     Json     // Eligibility criteria
+  benefits        Json     // Benefits details
+  documents       String[] // Required documents
+  applicationProcess Json  // Step-by-step process
+  
+  // Metadata
+  category        String   // subsidy, loan, insurance, support
+  department      String
+  state           String?  // State-specific or null for central
+  
+  // Links
+  officialUrl     String?
+  applicationUrl  String?
+  
+  // Status
+  isActive        Boolean  @default(true)
+  deadline        DateTime?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([category])
+  @@index([state])
+  @@index([isActive])
+}
+
+// Alerts
+model Alert {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type            AlertType
+  severity        AlertSeverity
+  
+  title           String
+  message         String
+  
+  // Details
+  data            Json?    // Additional context
+  
+  // Status
+  isRead          Boolean  @default(false)
+  isDismissed     Boolean  @default(false)
+  
+  // Expiry
+  expiresAt       DateTime?
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([userId])
+  @@index([type])
+  @@index([severity])
+  @@index([createdAt])
+}
+
+enum AlertType {
+  WEATHER
+  DISEASE
+  RISK
+  SCHEME
+  MARKET
+  GENERAL
+}
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+// Analytics Events (for tracking)
+model AnalyticsEvent {
+  id              String   @id @default(cuid())
+  
+  userId          String?
+  eventType       String   // page_view, diagnosis_upload, chat_message, etc.
+  eventData       Json?
+  
+  // Context
+  userAgent       String?
+  ipAddress       String?
+  location        Json?
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([userId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
+// Market Prices (optional feature)
+model MarketPrice {
+  id              String   @id @default(cuid())
+  
+  commodity       String
+  market          String   // Mandi name
+  state           String
+  district        String
+  
+  minPrice        Float
+  maxPrice        Float
+  modalPrice      Float    // Most common price
+  
+  unit            String   @default("quintal")
+  
+  // Source
+  source          String   @default("agmarknet")
+  reportedDate    DateTime
+  
+  createdAt       DateTime @default(now())
+  
+  @@index([commodity])
+  @@index([market])
+  @@index([reportedDate])
+}
