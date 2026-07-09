@@ -1,0 +1,16 @@
+# pnpm v11+ configuration file.
+# As of pnpm v11, settings are no longer read from the "pnpm" field in
+# package.json — they live here instead. See https://pnpm.io/settings
+#
+# allowBuilds replaces the old onlyBuiltDependencies / neverBuiltDependencies /
+# ignoredBuiltDependencies settings. Packages set to `true` are allowed to run
+# their install/postinstall scripts (needed for native binaries & codegen).
+packages:
+  - "."
+
+allowBuilds:
+  "@prisma/client": true
+  "@prisma/engines": true
+  prisma: true
+  sharp: true
+  unrs-resolver: true

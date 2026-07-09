@@ -1,0 +1,61 @@
+# ============================================================
+# KrisiSar AI - Backend Core Dependencies
+# Python 3.11+  |  install: pip install -r requirements.txt
+# Ranges (>=) are used intentionally so the resolver can pick
+# mutually-compatible versions for google-adk + pydantic + fastapi.
+# ============================================================
+
+# --- FastAPI Core ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+pydantic>=2.11.0
+pydantic-settings>=2.7.0
+
+# --- Google AI ---
+# google-adk 1.x is the first real release line (0.1.2 never existed).
+# It bundles google-genai; google-generativeai kept for legacy imports.
+google-adk>=1.0.0
+google-generativeai>=0.8.3
+
+# --- Database ---
+psycopg2-binary>=2.9.10
+sqlalchemy>=2.0.36
+alembic>=1.14.0
+
+# --- Redis & Task Queue ---
+redis>=5.2.1
+hiredis>=3.0.0
+
+# --- HTTP & APIs ---
+httpx>=0.28.1
+requests>=2.32.3
+
+# --- Data Processing ---
+pandas>=2.2.3
+numpy>=1.26,<3.0
+
+# --- Image Processing ---
+pillow>=11.1.0
+
+# --- BigQuery / Storage ---
+google-cloud-bigquery>=3.28.0
+google-cloud-storage>=2.19.0
+
+# --- Utilities ---
+python-dotenv>=1.0.1
+python-multipart>=0.0.20
+pyjwt>=2.10.1
+passlib[bcrypt]>=1.7.4
+python-dateutil>=2.9.0
+
+# --- Dev / Test ---
+pytest>=8.3.4
+pytest-asyncio>=0.24.0
+black>=24.10.0
+flake8>=7.1.1
+
+# NOTE:
+# RAG dependencies (chromadb, sentence-transformers -> pulls PyTorch ~2.5GB)
+# are heavy and optional. Install them only when you wire up the RAG
+# government-scheme vector search:
+#     pip install -r requirements-rag.txt
