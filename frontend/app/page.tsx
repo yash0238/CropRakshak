@@ -20,6 +20,14 @@ import {
   Globe,
 } from "lucide-react";
 import { COPY, LANGS, type Locale, type Item } from "@/lib/landing-i18n";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import {
+  Reveal,
+  StaggerGroup,
+  StaggerItem,
+  CountUp,
+  motion,
+} from "@/components/motion";
 
 const FEATURE_META = [
   { icon: Camera, color: "text-green-600", bg: "bg-green-50 dark:bg-green-900/20" },
@@ -63,9 +71,10 @@ export default function HomePage() {
 
           <div className="flex items-center gap-3">
             <LanguageSelector locale={locale} onChange={changeLang} />
+            <ThemeToggle />
             <Link
               href="/dashboard"
-              className="hidden sm:inline-flex items-center rounded-full bg-green-600 text-white px-5 py-2 text-sm font-semibold hover:bg-green-700 transition-colors"
+              className="hidden sm:inline-flex items-center rounded-full bg-gradient-brand text-white px-5 py-2 text-sm font-semibold shadow-md transition-transform hover:scale-105"
             >
               {t.getStarted}
             </Link>
