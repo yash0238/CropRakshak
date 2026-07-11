@@ -1,0 +1,42 @@
+# Backend-specific ignores (Python / FastAPI)
+# Root .gitignore already covers general Python patterns; these are
+# backend-specific runtime/secret artifacts that must never be committed.
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+service-account.json
+*-service-account.json
+*.pem
+*.key
+
+# Local vector store (RAG) - regenerated at runtime, not source
+chroma_db/
+
+# Uploaded / generated runtime files
+uploads/
+tmp/
+temp/
+
+# Byte-compiled files (scoped, in case root patterns are ever narrowed)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Logs
+*.log
+logs/
+
+# Test / coverage caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS/editor cruft
+.DS_Store
