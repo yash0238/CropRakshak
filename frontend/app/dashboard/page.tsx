@@ -4,7 +4,7 @@ import { DashboardTiles } from "@/components/DashboardTiles";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const metadata = {
-  title: "Dashboard - KrisiSar AI",
+  title: "Dashboard - Krishivaani",
   description: "Your farm decision intelligence dashboard",
 };
 
