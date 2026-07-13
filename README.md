@@ -1,175 +1,334 @@
+<a id="readme-top"></a>
+
 <div align="center">
 
-# 🌾 KrisiSar AI
-### AI-Powered Farm Decision Intelligence for Climate-Resilient Agriculture
+<h1>🌾 Krishivaani</h1>
 
-**Turning crop photos, weather, and 500K farm records into instant, multilingual decisions for smallholder farmers.**
+### The Voice of the Farm — Speak, Snap, Decide.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-async-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Google Gemini](https://img.shields.io/badge/Google_Gemini-2.5-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
-[![BigQuery](https://img.shields.io/badge/BigQuery-analytics-669DF6?logo=googlebigquery&logoColor=white)](https://cloud.google.com/bigquery)
-[![NVIDIA RAPIDS](https://img.shields.io/badge/NVIDIA_RAPIDS-cuDF-76B900?logo=nvidia&logoColor=white)](https://rapids.ai/)
-[![Deployed on Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://vercel.com/)
-[![Backend on Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://render.com/)
+*Krishi (कृषि, agriculture) + Vaani (वाणी, voice). Diagnose disease from a photo, ask any farming question by voice in your own language, and get a clear decision — not just data. Built for climate-resilient farming.*
 
-**🏆 HACKHAZARDS '26 · Theme: Climate & Sustainability Systems**
+<br/>
 
-[Live Demo](#) · [Architecture](docs/ARCHITECTURE.md) · [API Docs](https://krisisar-ai.onrender.com/docs)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-View_App-22c55e?style=for-the-badge)](https://krisi-sar-ai.vercel.app)
+[![API Docs](https://img.shields.io/badge/⚙️_API-Swagger-46E3B7?style=for-the-badge)](https://krisisar-ai.onrender.com/docs)
+[![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/yash0238/CropRakshak)
+
+[![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Sarvam AI](https://img.shields.io/badge/Sarvam_AI-FF6B00?style=for-the-badge)](https://www.sarvam.ai/)
+[![Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
+[![BigQuery](https://img.shields.io/badge/BigQuery-669DF6?style=for-the-badge&logo=googlebigquery&logoColor=white)](https://cloud.google.com/bigquery)
+[![NVIDIA RAPIDS](https://img.shields.io/badge/NVIDIA_RAPIDS-76B900?style=for-the-badge&logo=nvidia&logoColor=white)](https://rapids.ai/)
+
+> 🏆 Built for **HACKHAZARDS '26** — Theme: **🌍 Climate & Sustainability Systems** · Track: **Sarvam AI**
 
 </div>
 
 ---
 
-## 🎯 The Problem
+<details>
+<summary><strong>📑 Table of Contents</strong></summary>
 
-Over 100 million smallholder farmers in India make high-stakes decisions — *what to spray, when to irrigate, which scheme to apply for* — with almost no timely, trustworthy, or **localized** guidance. The cost of getting it wrong is enormous:
+- [The Problem](#the-problem)
+- [Our Solution](#our-solution)
+- [Key Features](#key-features)
+- [Voice Assistant — Our Standout Feature](#voice-assistant--our-standout-feature)
+- [Results & Impact](#results--impact)
+- [Screenshots](#screenshots)
+- [HACKHAZARDS Alignment](#hackhazards-alignment)
+- [Built With](#built-with)
+- [Architecture](#architecture)
+- [Data Pipeline](#data-pipeline)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Project Structure](#project-structure)
+- [Roadmap](#roadmap)
+- [Team](#team)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-- **Crop disease** goes undiagnosed until it has spread, destroying up to 40% of yield.
-- **Weather shocks** (unseasonal rain, heat stress) hit without actionable warning.
-- **Government schemes** worth billions go unclaimed because farmers can't navigate eligibility.
-- **The language barrier** locks most digital agri-tools to English-first users.
-
-This is a **climate-resilience** problem: as weather grows more volatile, farmers need real-time, data-driven decisions to protect food security and their livelihoods.
-
-## 💡 The Solution
-
-**KrisiSar AI** is an end-to-end **AI-powered decision intelligence platform** that puts an agronomist, a meteorologist, and a policy expert in every farmer's pocket — in their own language. Snap a photo, share your location, ask a question — and get a clear, explainable answer in seconds.
-
-It combines a **multi-agent AI system** (Google Gemini 2.5 Vision + reasoning), **real-time weather intelligence**, **GPU-accelerated analytics** over 500K farm records (NVIDIA RAPIDS), and a **RAG-based government-scheme matcher** behind a fast, accessible, mobile-first web app.
+</details>
 
 ---
 
-## ✨ Key Features
+## The Problem
+
+Farmers make high-stakes decisions every day — when to irrigate, which pesticide to spray, whether a leaf spot is a real threat. Yet the information they need is scattered across weather apps, YouTube, WhatsApp groups, and local dealers. Worse, most agri-tools are **English-only and text-first**, locking out the millions of farmers who are more comfortable *speaking* in Hindi, Marathi, Tamil, or Telugu.
+
+The result: poor timing, wasted water and chemicals, undiagnosed disease, and lost income — all made sharper by an increasingly volatile climate.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Our Solution
+
+**Krishivaani turns fragmented information into confident decisions — and it works by voice.** It unifies diagnosis, weather, risk, schemes, and a multilingual AI assistant into one platform that returns *decisions, not just data*. A farmer can simply speak a question in their language and hear the answer read back.
+
+- 📸 Snap a leaf photo → instant disease diagnosis + targeted treatment (less pesticide waste).
+- 🎙️ Speak a question → hear a spoken answer in your language (built for low-literacy, hands-free field use).
+- 🎯 Check a live 0–100 farm risk score built from weather, disease, and crop-health signals.
+- 💧 Get water-smart irrigation guidance that cuts resource waste.
+- 📊 Explore national-scale analytics powered by a GPU-accelerated data pipeline.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Key Features
 
 | Feature | What it does | Powered by |
 |---|---|---|
-| 📸 **Crop Disease Diagnosis** | Upload a leaf photo → disease, confidence, severity, and a treatment plan (organic + chemical) | Gemini 2.5 Vision |
-| 🛡️ **Farm Risk Score (0–100)** | A single, explainable risk number fusing weather, disease pressure, and crop health | Multi-factor agent |
-| 🌦️ **Weather Intelligence** | 7-day forecast with disease-risk windows and irrigation guidance | Open-Meteo + agent |
-| 💬 **Ask KrisiSar** | Multilingual conversational assistant for any farming question | Gemini + intent routing |
-| 📄 **Government Scheme Matcher** | Finds subsidies/insurance a farmer is actually eligible for | RAG-style matching |
-| 📊 **Analytics Dashboard** | Yield-by-crop, risk-by-state, disease-spread insights across 500K farms | BigQuery + Recharts |
+| 🎙️ **Voice Assistant** | Speak in 5 languages, hear the answer aloud — full speech loop | Sarvam Saarika (STT) + Bulbul (TTS) |
+| 💬 **Multilingual Chat** | Ask any farming question in your language | Sarvam `sarvam-30b` (Gemini fallback) |
+| 📸 **Crop Diagnosis** | Photo → disease detection, severity, and treatment | Google Gemini Vision |
+| 🎯 **Farm Risk Score** | Live 0–100 risk from multi-factor analysis | Weather + disease + crop-health |
+| 🌤️ **Weather Intelligence** | 7-day forecast + irrigation & disease-risk advice | Open-Meteo |
+| 🏛️ **Government Schemes** | Match to schemes you're eligible for | Scheme matching |
+| 📊 **Analytics Dashboard** | Yield, risk, and disease insights over 500K records | BigQuery + RAPIDS |
+| 🌐 **Multilingual UI** | Landing page in English, Hindi, Marathi, Tamil, Telugu | Built-in i18n |
 
-**Multilingual by design:** English, Hindi (हिन्दी), Marathi (मराठी), Tamil (தமிழ்), Telugu (తెలుగు).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
----
+## Voice Assistant — Our Standout Feature
 
-## 🧠 Multi-Agent AI Architecture
-
-KrisiSar is built as a system of **six specialized AI agents**, each owning a domain — a durable, modular pattern that keeps reasoning explainable and easy to extend.
-
-| Agent | Responsibility |
-|---|---|
-| `image_diagnosis_agent` | Gemini Vision → disease, confidence, severity, treatment |
-| `weather_intelligence_agent` | Open-Meteo forecast → disease-risk & irrigation signals |
-| `risk_prediction_agent` | Fuses weather + disease + crop health into a 0–100 score |
-| `recommendation_agent` | Produces decision cards (clear yes/no + reasoning) |
-| `government_scheme_agent` | RAG matching of farmer profile → eligible schemes |
-| `analytics_agent` | Writes events to BigQuery and runs aggregation queries |
-
-> Full details in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
-
----
-
-## ⚡ GPU-Accelerated Analytics (NVIDIA RAPIDS)
-
-Real-time insight at national scale needs speed. We benchmarked the exact aggregations that power the dashboard on **pandas (CPU) vs cuDF (GPU)** over 500K rows on a Colab T4:
-
-| Operation | Speedup |
-|---|---|
-| GroupBy aggregation | **49.8×** |
-| CSV load | 15.1× |
-| Filter | 2.8× |
-| **Average** | **🚀 22.58×** |
-
-An order-of-magnitude faster time-to-insight is what makes real-time farmer-scale analytics viable. See [`analytics/rapids_benchmark.ipynb`](analytics/rapids_benchmark.ipynb).
-
----
-
-## 🏗️ Tech Stack
-
-**Frontend** — Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Recharts · next-themes (dark mode) · PWA-ready
-
-**Backend** — FastAPI (async) · Python · 8 REST route groups · Pydantic settings · auto Swagger docs
-
-**AI / ML** — Google Gemini 2.5 (Vision + reasoning) · multi-agent orchestration · RAG for scheme matching
-
-**Data** — Google BigQuery (partitioned + clustered) · Looker Studio · NVIDIA RAPIDS cuDF
-
-**Infra** — Vercel (frontend) · Render (backend) · Supabase (auth) · Open-Meteo (weather)
-
----
-
-## 🖼️ Architecture
+Most agri-apps stop at English text boxes. Krishivaani closes the loop with a **full voice pipeline** in five Indian languages, powered end-to-end by Sarvam AI:
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│                 Next.js 15 Frontend (Vercel)               │
-│   React 19 · TypeScript · Tailwind v4 · Framer Motion      │
-└───────────────┬───────────────────────────┬───────────────┘
-                │ REST (JSON)                │ Supabase (auth)
-                ▼                            ▼
-┌─────────────────────────────────┐   ┌──────────────────┐
-│      FastAPI Backend (Render)    │   │  Supabase Auth   │
-│   8 route groups · 6 AI agents   │   └──────────────────┘
-└───┬───────────┬──────────┬───────┘
-    ▼           ▼          ▼
-┌────────┐ ┌──────────┐ ┌──────────────┐     ┌────────────────────┐
-│ Gemini │ │Open-Meteo│ │   BigQuery   │────▶│ NVIDIA RAPIDS cuDF  │
-│  2.5   │ │ weather  │ │  analytics   │     │   (22.58× faster)   │
-└────────┘ └──────────┘ └──────────────┘     └────────────────────┘
+🎙️ Speak  →  Sarvam Saarika (STT)  →  Sarvam sarvam-30b  →  Sarvam Bulbul (TTS)  →  🔊 Hear
 ```
 
----
+- **Speak your question** — tap the mic on the Voice page (`/dashboard/voice`) or the chat page and talk naturally in Hindi, Marathi, Tamil, Telugu, or English.
+- **Hear the answer** — replies are read aloud with a **natural Indian voice chosen per language** (Hindi → *manisha*, English → *anushka*, Tamil/Telugu → *vidya*).
+- **Hands-free & inclusive** — designed for low-literacy farmers and real field conditions. A **Stop** button interrupts playback anytime.
+- **Robust by design** — the browser records WebM, which we re-encode to WAV for reliable transcription; Bulbul's multi-chunk audio is merged server-side into a single playable file; and if Sarvam is unavailable, chat automatically falls back to Gemini.
 
-## 🚀 Getting Started
+> This is why we chose the **Sarvam AI track**: voice + Indian languages are exactly where Sarvam shines, and exactly what the last-mile farmer needs. The name says it all — *Krishivaani*, the **voice** of agriculture.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Results & Impact
+
+<div align="center">
+
+| 📦 Data scale | ⚡ GPU speedup | 🎙️ Voice languages | 🌐 UI languages |
+|:---:|:---:|:---:|:---:|
+| **500,000** farm records | **22.58×** avg (49.8× GroupBy) | **5** | **5** |
+
+</div>
+
+- **Acceleration evidence.** NVIDIA RAPIDS cuDF processes the same 500K-row analytics **22.58× faster on average** than pandas on a Google Colab T4 GPU — GroupBy aggregations run **49.8× faster**. This is what makes real-time insight viable at national farmer scale. See [`analytics/rapids_benchmark.ipynb`](./analytics/rapids_benchmark.ipynb).
+- **Real, queryable warehouse.** The Analytics dashboard is served from a Google BigQuery dataset (see [`database/bigquery/schema.sql`](./database/bigquery/schema.sql)) — yield by crop, risk by state, and disease spread.
+- **Voice-first inclusion.** The full speak→answer→listen loop works in 5 Indian languages, bringing AI advice to farmers who can't (or prefer not to) type.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Screenshots
+
+<div align="center">
+
+### ⚡ NVIDIA RAPIDS — 22.58× average speedup (49.8× on GroupBy), 500K records
+<img src="docs/screenshots/rapids-benchmark.png" alt="Pandas vs cuDF benchmark — 22.58x average speedup" width="90%"/>
+
+### 📊 BigQuery + Looker Studio Analytics
+<table>
+  <tr>
+    <td width="60%"><img src="docs/screenshots/looker-yield-by-crop.png" alt="Average yield by crop"/></td>
+    <td width="40%"><img src="docs/screenshots/looker-crop-distribution.png" alt="Crop distribution"/></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/looker-yield-scatter.png" alt="Yield vs farm size"/></td>
+    <td><img src="docs/screenshots/looker-scorecards.png" alt="Key metrics — 500,000 farms analyzed"/></td>
+  </tr>
+</table>
+
+</div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## HACKHAZARDS Alignment
+
+**Theme — 🌍 Climate & Sustainability Systems.** Krishivaani is agri-tech for climate resilience: it reduces water and pesticide waste through targeted, timely advice, and helps farmers act before climate shocks cause losses.
+
+**Track — Sarvam AI.** We use Sarvam across the full language stack — chat (`sarvam-30b`), speech-to-text (Saarika), and text-to-speech (Bulbul) — to make the platform usable by voice, in five Indian languages.
+
+| Judging lens | How Krishivaani delivers |
+|---|---|
+| Real user & problem | Farmers deciding irrigation / pesticide / disease action, in their own language |
+| Meaningful use of the track tech | Sarvam powers chat **and** the full voice loop (STT + TTS) in 5 languages |
+| Working product | 7 live dashboard tools on a deployed Next.js + FastAPI stack |
+| Data & acceleration | BigQuery warehouse (500K rows) + NVIDIA RAPIDS cuDF (22.58× avg speedup) |
+| Sustainability impact | Water-smart irrigation, reduced chemical overuse, climate risk scoring |
+| Inclusivity | Voice-first + multilingual — built for low-literacy, last-mile access |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Built With
+
+**Frontend** — Next.js 15 · React 19 · TypeScript · Tailwind CSS v4 · Recharts · Framer Motion
+**Backend** — FastAPI · Python 3.11+ · Pydantic v2 · multi-agent design (6 agents)
+**AI** — Sarvam AI (chat · Saarika STT · Bulbul TTS) · Google Gemini (vision + fallback)
+**Data & Analytics** — Google BigQuery · NVIDIA RAPIDS cuDF · Looker Studio
+**Infra** — Vercel (frontend) · Render (backend) · Supabase (optional auth)
+**External APIs** — Open-Meteo · BigDataCloud
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Architecture
+
+Krishivaani is a Next.js frontend talking to a FastAPI backend that orchestrates 6 AI agents across Sarvam AI, Google Gemini, and BigQuery.
+
+```
+┌──────────────────────────────┐        ┌───────────────────────────────┐
+│   Next.js 15 (Vercel)        │  REST  │   FastAPI (Render)            │
+│   Landing · Dashboard · Voice ├───────►│   8 route groups · 6 agents   │
+└──────────────────────────────┘        └────┬──────────┬──────────┬─────┘
+                                              │          │          │
+                                     ┌────────▼───┐ ┌────▼─────┐ ┌──▼──────────┐
+                                     │  Sarvam AI │ │  Gemini  │ │  BigQuery   │
+                                     │ chat·STT·TTS│ │  vision  │ │  + RAPIDS   │
+                                     └────────────┘ └──────────┘ └─────────────┘
+```
+
+> 📐 Full details — agents, AI providers, the voice pipeline, and the data/GPU pipeline — are in **[ARCHITECTURE.md](./ARCHITECTURE.md)**.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Data Pipeline
+
+1. **Generate** — 500K synthetic farm records via [`analytics/generate_synthetic_data.py`](./analytics/generate_synthetic_data.py) → `farm_performance_500k.csv`.
+2. **Store** — load into a BigQuery dataset ([`database/bigquery/schema.sql`](./database/bigquery/schema.sql): tables + analytics views).
+3. **Accelerate** — [`analytics/rapids_benchmark.ipynb`](./analytics/rapids_benchmark.ipynb) proves a 22.58× average (49.8× GroupBy) speedup of cuDF vs pandas on a Colab T4 GPU.
+4. **Serve** — `GET /api/v1/analytics/farm-insights` aggregates yield by crop, risk by state, and disease spread.
+5. **Visualize** — the in-app Analytics page (Recharts) + a Looker Studio dashboard.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Getting Started
 
 ### Prerequisites
-- Node.js ≥ 22, pnpm ≥ 9
-- A running backend (or use the hosted one: `https://krisisar-ai.onrender.com`)
+- **Node.js 22+** and **pnpm 9+**
+- **Python 3.11+**
+- A **Google Gemini** API key ([ai.google.dev](https://ai.google.dev/))
+- A **Sarvam AI** API key ([dashboard.sarvam.ai](https://dashboard.sarvam.ai/)) — for chat + voice
+- *(Optional)* A Google Cloud project with BigQuery + a service-account JSON, for the analytics dashboard
 
-### Frontend (local)
-```bash
-cd frontend
-pnpm install
-cp .env.example .env.local     # then fill in the values
-pnpm dev                       # http://localhost:3000
+### 1. Clone
+```sh
+git clone https://github.com/yash0238/CropRakshak.git
+cd CropRakshak
 ```
 
-### Environment variables (`frontend/.env.local`)
+### 2. Backend (FastAPI)
+```sh
+cd backend
+python -m venv venv
+venv\Scripts\activate            # Windows  (source venv/bin/activate on macOS/Linux)
+pip install -r requirements.txt
+# create .env (see Environment Variables) + add service-account.json for BigQuery
+python main.py                   # http://localhost:8000  (Swagger at /docs)
+```
+
+### 3. Frontend (Next.js)
+```sh
+cd frontend
+pnpm install
+# create .env.local (see Environment Variables)
+pnpm dev                         # http://localhost:3000
+```
+
+Open **http://localhost:3000**, go to the dashboard, and try the **Voice Assistant**.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Environment Variables
+
+**`frontend/.env.local`**
 ```env
-NEXT_PUBLIC_API_URL=https://krisisar-ai.onrender.com
+NEXT_PUBLIC_API_URL=http://localhost:8000
+# Optional (auth): app runs fine without these
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-### Deploy to Vercel
-1. Import the repo, set **Root Directory** to `frontend`.
-2. Add the environment variables above.
-3. Deploy. (Ensure the backend's CORS allows your Vercel domain.)
+**`backend/.env`** — `GOOGLE_API_KEY`, `DATABASE_URL`, and `BIGQUERY_PROJECT_ID` are required; the rest are optional.
+```env
+GOOGLE_API_KEY=your_gemini_api_key
+SARVAM_API_KEY=your_sarvam_api_key          # enables chat + voice
+DATABASE_URL=postgresql://user:pass@host:5432/db
+BIGQUERY_PROJECT_ID=your_gcp_project_id
+BIGQUERY_DATASET_ID=krisisar_analytics
+BIGQUERY_CREDENTIALS_PATH=./service-account.json
+OPEN_METEO_API_URL=https://api.open-meteo.com/v1/forecast
+SECRET_KEY=change-me-to-a-random-string
+```
 
----
+> ⚠️ `.env`, `.env.local`, and `service-account.json` are **gitignored** and must never be committed. In production, set them as platform environment variables / secret files.
 
-## 🗺️ Roadmap
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- 🎙️ **Voice-first interaction** in Indian languages (Sarvam AI) for low-literacy accessibility
-- 📴 Offline-first PWA for low-connectivity rural areas
-- 📱 SMS/WhatsApp alerts for farmers without smartphones
-- 🛰️ Satellite NDVI integration for field-level crop-health monitoring
-- 🔔 Proactive push alerts on high-risk weather windows
+## Project Structure
 
----
+```
+Krishivaani/
+├── frontend/                 # Next.js 15 app
+│   ├── app/
+│   │   ├── page.tsx          # Multilingual landing page
+│   │   └── dashboard/        # 7 tools incl. voice/ and chat/
+│   ├── components/           # DashboardTiles, FeatureShell, ...
+│   └── lib/                  # api.ts, landing-i18n.ts, supabase.ts
+├── backend/                  # FastAPI service
+│   ├── agents/               # 6 AI agents
+│   ├── api/routes/           # 8 route groups (incl. chat = text + voice)
+│   ├── services/             # sarvam_client.py (chat · STT · TTS)
+│   ├── config.py · main.py
+│   └── requirements.txt
+├── analytics/                # synthetic data generator + RAPIDS benchmark
+├── database/bigquery/        # schema.sql (tables + views)
+├── docs/screenshots/         # RAPIDS + Looker screenshots
+├── ARCHITECTURE.md           # System design deep-dive
+├── LICENSE
+└── README.md
+```
 
-## 🌍 Impact & Alignment
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-KrisiSar AI directly supports **UN SDG 2 (Zero Hunger)**, **SDG 13 (Climate Action)**, and **SDG 1 (No Poverty)** by making climate-resilient, data-driven farming decisions accessible to the farmers who need them most — regardless of language, literacy, or location.
+## Roadmap
 
----
+- [x] Multi-agent FastAPI backend (diagnosis, weather, risk, recommendation, schemes, analytics)
+- [x] Multilingual AI chat via Sarvam (`sarvam-30b`) with Gemini fallback
+- [x] **Voice Assistant** — full Sarvam STT + TTS loop in 5 languages
+- [x] Gemini Vision crop diagnosis
+- [x] BigQuery pipeline + 500K-record analytics
+- [x] NVIDIA RAPIDS cuDF benchmark (22.58× average speedup)
+- [x] Multilingual landing page (5 languages)
+- [ ] Full multilingual support across all dashboard pages
+- [ ] Offline-first PWA for low-connectivity areas
+- [ ] Live data.gov.in ingestion (mandi prices, rainfall)
 
-<div align="center">
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-**Built with 🌱 for farmers, powered by AI.**
+## Team
 
-</div>
+Built with 🌱 for HACKHAZARDS '26 by:
+
+- **Yashovardhan Thopte**
+- **Ritik Gupta**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## License
+
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for details.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Acknowledgments
+
+- [Sarvam AI](https://www.sarvam.ai/) — India-first LLM, speech-to-text, and text-to-speech
+- [Google Gemini](https://ai.google.dev/) · [BigQuery](https://cloud.google.com/bigquery) · [Looker Studio](https://lookerstudio.google.com/)
+- [NVIDIA RAPIDS](https://rapids.ai/)
+- [Open-Meteo](https://open-meteo.com/) · [BigDataCloud](https://www.bigdatacloud.com/)
+- [Vercel](https://vercel.com/) · [Render](https://render.com/) · [Supabase](https://supabase.com/)
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template) for structure inspiration
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
