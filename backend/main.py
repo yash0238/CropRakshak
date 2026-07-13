@@ -1,5 +1,5 @@
 """
-KrisiSar AI - FastAPI Backend
+Krishivaani - FastAPI Backend
 Main entry point for the AI-powered Farm Decision Intelligence Platform
 """
 
@@ -32,7 +32,7 @@ from api.routes import (
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="KrisiSar AI API",
+    title="Krishivaani API",
     description="AI-Powered Farm Decision Intelligence Platform",
     version="1.0.0",
     docs_url="/docs",
@@ -62,7 +62,7 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {
-        "message": "KrisiSar AI API",
+        "message": "Krishivaani API",
         "version": "1.0.0",
         "status": "operational",
         "docs": "/docs"
