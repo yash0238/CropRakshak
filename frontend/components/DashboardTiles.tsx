@@ -8,6 +8,7 @@ import {
   MessageCircle,
   FileText,
   BarChart3,
+  Mic,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -62,8 +63,18 @@ const tiles: Tile[] = [
     bg: "bg-purple-50 dark:bg-purple-900/20",
     bar: "from-purple-500 to-fuchsia-500",
     glow: "rgba(147,51,234,0.4)",
-    title: "Ask KrisiSar",
+    title: "Ask Krishivaani",
     description: "Multilingual AI assistant for any farming question.",
+  },
+  {
+    href: "/dashboard/voice",
+    icon: Mic,
+    color: "text-rose-600",
+    bg: "bg-rose-50 dark:bg-rose-900/20",
+    bar: "from-rose-500 to-pink-500",
+    glow: "rgba(225,29,72,0.4)",
+    title: "Voice Assistant",
+    description: "Speak your question in 5 languages and hear the answer aloud.",
   },
   {
     href: "/dashboard/schemes",

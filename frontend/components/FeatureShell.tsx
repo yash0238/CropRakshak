@@ -40,7 +40,7 @@ export function ComingSoon({ note }: { note: string }) {
   return (
     <div className="feature-card border-2 border-dashed border-gray-300 dark:border-gray-700 text-center py-12">
       <p className="text-gray-600 dark:text-gray-300 mb-2">
-        This feature connects to the KrisiSar AI backend.
+        This feature connects to the Krishivaani backend.
       </p>
       <p className="text-sm text-gray-500 dark:text-gray-400">{note}</p>
     </div>
