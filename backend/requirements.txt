@@ -1,5 +1,5 @@
 # ============================================================
-# KrisiSar AI - Backend Core Dependencies
+# Krishivaani - Backend Core Dependencies
 # Python 3.11+  |  install: pip install -r requirements.txt
 # Ranges (>=) are used intentionally so the resolver can pick
 # mutually-compatible versions for google-adk + pydantic + fastapi.
