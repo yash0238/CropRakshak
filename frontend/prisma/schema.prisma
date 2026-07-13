@@ -1,4 +1,4 @@
-// Prisma Schema for KrisiSar AI
+// Prisma Schema for Krishivaani
 // Database: PostgreSQL (Supabase)
 
 generator client {
