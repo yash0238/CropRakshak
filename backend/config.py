@@ -48,13 +48,15 @@ class Settings(BaseSettings):
     # sarvam-105b (higher quality, slower). Override via SARVAM_MODEL in .env.
     SARVAM_MODEL: str = "sarvam-30b"
     
-    # Gemini Configuration (GA model names — avoid -exp aliases that get retired)
-    # NOTE: gemini-2.5-pro has 0 quota on the free tier, so we use flash for the
-    # "pro" slot too. Switch GEMINI_MODEL_PRO back to gemini-2.5-pro once on a
-    # paid/billing-enabled key for higher-quality reasoning.
-    GEMINI_MODEL_FLASH: str = "gemini-2.5-flash"
-    GEMINI_MODEL_PRO: str = "gemini-2.5-flash"
-    GEMINI_MODEL_VISION: str = "gemini-2.5-flash"
+    # Gemini Configuration.
+    # NOTE: gemini-2.5-flash was deprecated (June 2026) and is blocked for NEW
+    # API keys/projects, so we default to gemini-3.5-flash (current, multimodal
+    # — covers both vision diagnosis and text). If your key doesn't support this
+    # exact ID, run ListModels (see README/troubleshooting) and override these
+    # via GEMINI_MODEL_FLASH / _PRO / _VISION env vars — no code change needed.
+    GEMINI_MODEL_FLASH: str = "gemini-3.5-flash"
+    GEMINI_MODEL_PRO: str = "gemini-3.5-flash"
+    GEMINI_MODEL_VISION: str = "gemini-3.5-flash"
     GEMINI_TEMPERATURE: float = 0.7
     GEMINI_MAX_TOKENS: int = 8192
     

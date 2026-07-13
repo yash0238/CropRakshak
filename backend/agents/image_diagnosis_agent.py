@@ -22,7 +22,9 @@ class ImageDiagnosisAgent:
             "temperature": 0.4,  # Lower for more precise diagnosis
             "top_p": 0.95,
             "top_k": 40,
-            "max_output_tokens": 2048,
+            # Detailed diagnoses (symptoms + causes + treatment) can be long;
+            # 2048 sometimes truncated the JSON mid-object, breaking parsing.
+            "max_output_tokens": 8192,
         }
     
     async def analyze_crop_image(
@@ -127,14 +129,21 @@ Be precise, practical, and farmer-friendly. Focus on actionable advice."""
         import re
         
         try:
-            # Extract JSON from response (handles markdown code blocks)
-            json_match = re.search(r'```json\n(.*?)\n```', response_text, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(1)
-            else:
-                json_str = response_text
-            
-            diagnosis = json.loads(json_str)
+            text = (response_text or "").strip()
+
+            # 1) Strip a markdown code fence if present: ```json ... ``` or ``` ... ```
+            fence = re.search(r"```(?:json)?\s*(.*?)\s*```", text, re.DOTALL)
+            if fence:
+                text = fence.group(1).strip()
+
+            # 2) Fall back to slicing from the first "{" to the last "}", so any
+            #    stray prose the model adds before/after the JSON is ignored.
+            if not text.lstrip().startswith("{"):
+                start, end = text.find("{"), text.rfind("}")
+                if start != -1 and end != -1 and end > start:
+                    text = text[start:end + 1]
+
+            diagnosis = json.loads(text)
             return diagnosis
             
         except json.JSONDecodeError:
