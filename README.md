@@ -10,7 +10,7 @@
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-View_App-22c55e?style=for-the-badge)](https://krisi-sar-ai.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-View_App-22c55e?style=for-the-badge)]()
 [![API Docs](https://img.shields.io/badge/⚙️_API-Swagger-46E3B7?style=for-the-badge)](https://krisisar-ai.onrender.com/docs)
 [![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/yash0238/CropRakshak)
 

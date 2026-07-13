@@ -38,7 +38,6 @@ Chaupal.AI is a two-tier application:
 ```
 
 ---
-
 ## 2. Frontend
 
 **Stack:** Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS v4,
