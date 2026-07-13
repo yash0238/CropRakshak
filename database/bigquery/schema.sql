@@ -1,4 +1,7 @@
--- BigQuery Schema for KrisiSar AI Analytics
+-- BigQuery Schema for Krishivaani Analytics
+-- NOTE: the dataset/project identifiers below (krisisar_analytics / krisisar-ai)
+-- are the live deployed BigQuery infrastructure names and are kept as-is so the
+-- existing backend connection keeps working. Only the product name changed.
 -- Project: krisisar-ai
 -- Dataset: krisisar_analytics
 
